@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import tech.buildrun.smartstock.client.GoogleClient;
+import tech.buildrun.smartstock.config.AppConfig;
 
 @SpringBootApplication
 @EnableFeignClients
@@ -16,10 +16,12 @@ public class SmartstockApplication implements CommandLineRunner {
     }
 
 	@Autowired
-	private GoogleClient googleClient;
+	private AppConfig appConfig;
 
 	@Override
 	public void run(String... args) throws Exception {
-		googleClient.helloGoogle();
+		appConfig.getClientId();
+		appConfig.getClientSecret();
+
 	}
 }
