@@ -9,9 +9,11 @@ import java.io.IOException;
 public class SmartStockService {
 
     private final ReportService reportService;
+    private final PurchaseSectorService purchaseSectorService;
 
-    public SmartStockService(ReportService reportService) {
+    public SmartStockService(ReportService reportService, PurchaseSectorService purchaseSectorService) {
         this.reportService = reportService;
+        this.purchaseSectorService = purchaseSectorService;
     }
 
     public void start(String reporthPath) {
@@ -24,6 +26,8 @@ public class SmartStockService {
                 if (item.getQuantity() < item.getReorderThreshold()) {
 
                     var reorderQuantity = calculateReorderQuantity(item);
+
+                    purchaseSectorService.sendPurchaseRequest(item, reorderQuantity);
                 }
             });
 

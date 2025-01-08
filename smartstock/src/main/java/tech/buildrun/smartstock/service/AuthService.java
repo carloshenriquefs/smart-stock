@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Service
 public class AuthService {
 
-    private static final String GRANT_TYPE = "";
+    private static final String GRANT_TYPE = "client_credentials";
     private static String token;
     private static LocalDateTime expiresIn;
 
